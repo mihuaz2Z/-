@@ -89,6 +89,22 @@ void mergeSort(int a[],int left,int right) {
     mergeArray(a, left, mid, right);
 }
 
+void selectSort(int a[],int num) {
+    
+    for (int i = 0; i < num; i ++) {
+        int min = i;
+        for (int j = i + 1; j < num; j ++) {
+            if (a[min] > a[j]) {
+                min = j;
+            }
+        }
+        if (min != i) {
+            swap(a+i, a+min);
+        }
+    }
+    
+}
+
 
 
 int main(int argc, const char * argv[]) {
@@ -96,7 +112,7 @@ int main(int argc, const char * argv[]) {
     int a[] = {1,3,5,3,8,2,1,7,8,6,5};
     int size = sizeof(a)/sizeof(int);
     
-    mergeSort(a,0,size-1);
+    selectSort(a,size);
     
     for (int i = 0; i < size; i ++) {
         std::cout << a[i] << " ";
