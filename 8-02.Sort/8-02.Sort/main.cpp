@@ -155,13 +155,23 @@ void insertSort (int a[],int num) {
     
 }
 
+void shellSort (int a[],int num) {
+
+    for (int step = num/2; step > 0; step/=2) {
+        for (int i = step; i < num - step; i +=step) {
+            for (int j = i + step; j > step && a[j-step] > a[j]; j-=step) {
+                swap(a+j-step, a+j);
+            }
+        }
+    }
+}
 
 int main(int argc, const char * argv[]  ) {
     
     int a[] = {1,3,5,3,8,2,1,7,8,6,5};
     int size = sizeof(a)/sizeof(int);
     
-    insertSort(a,size);
+    shellSort(a,size);
     
     for (int i = 0; i < size; i ++) {
         std::cout << a[i] << " ";
