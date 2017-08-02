@@ -145,13 +145,23 @@ void heapSort (int a[],int num) {
 
 }
 
+void insertSort (int a[],int num) {
 
-int main(int argc, const char * argv[]) {
+    for (int i = 0; i < num - 1; i ++) {
+        for (int j = i+1; j >= 1 && a[j-1] > a[j]; j--) {
+            swap(a+j-1, a+j);
+        }
+    }
+    
+}
+
+
+int main(int argc, const char * argv[]  ) {
     
     int a[] = {1,3,5,3,8,2,1,7,8,6,5};
     int size = sizeof(a)/sizeof(int);
     
-    heapSort(a,size);
+    insertSort(a,size);
     
     for (int i = 0; i < size; i ++) {
         std::cout << a[i] << " ";
