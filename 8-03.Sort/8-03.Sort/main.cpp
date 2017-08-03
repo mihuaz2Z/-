@@ -57,6 +57,39 @@ void sheelSort(int a[],int num) {
     }
 }
 
+void adjustHeap (int a[],int num,int parent) {
+    int left = parent * 2 + 1;
+    int right = parent * 2 +2;
+    int max = 0;
+    if (left > num - 1) {
+        return;
+    }
+    else if (right > num - 1){
+        max = left;
+    }
+    else {
+        max = a[left] >= a[right] ? left : right;
+    }
+    
+    if (a[parent] < a[max]) {
+        swap(a+parent, a+max);
+        adjustHeap(a, num, max);
+    }
+}
+
+void heapSort (int a[],int num) {
+    if (num <2) {
+        return;
+    }
+    for (int i = (num-1)/2; i >= 0; i --) {
+        adjustHeap(a, num, i);
+    }
+    for (int j = num-1; j >= 1; j --) {
+        swap(a, a+j);
+        adjustHeap(a, j, 0);
+    }
+}
+
 
 
 int main(int argc, const char * argv[]) {
@@ -64,7 +97,7 @@ int main(int argc, const char * argv[]) {
     int a[] = {1,3,5,3,8,2,1,7,8,6,5};
     int size = sizeof(a)/sizeof(int);
     
-    sheelSort(a, size);
+    heapSort(a, size);
     
     for (int i = 0; i < size; i ++) {
         std::cout << a[i] << " ";
