@@ -15,7 +15,7 @@ void swap(int*a,int*b){
     *b = temp;
 }
 
-void bubble(int a[],int num) {
+void bubbleSort(int a[],int num) {
     for (int i = 0; i < num; i ++) {
         for (int j = i +1; j < num; j ++) {
             if (a[i] > a[j]) {
@@ -25,6 +25,19 @@ void bubble(int a[],int num) {
     }
 }
 
+void selectSort(int a[],int num) {
+    for (int i = 0; i < num -1; i ++) {
+        int min = i;
+        for (int j = i +1; j < num; j ++) {
+            if (a[min] > a[j]) {
+                min = j;
+            }
+        }
+        if (min != i) {
+            swap(a+min, a+i);
+        }
+    }
+}
 
 
 
@@ -33,7 +46,7 @@ int main(int argc, const char * argv[]) {
     int a[] = {1,3,5,3,8,2,1,7,8,6,5};
     int size = sizeof(a)/sizeof(int);
     
-    bubble(a, size);
+    selectSort(a, size);
     
     for (int i = 0; i < size; i ++) {
         std::cout << a[i] << " ";
